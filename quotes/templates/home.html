@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% if ticker %}
+    {{ ticker }}
+{% endif %}
+
+{% if api %}
+    {% if api == "Error...." %}
+        there was a problem with you ticker symbol,
+        please try again...
+    {% else %}
+    <div class="card" style="width: 30rem; box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);">
+        <div class="card-header"><h1>{{ api.companyName}}</h1></div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price: ${{ api.latestPrice }}<br/></li>
+            <li class="list-group-item">PreviousClose: ${{ api.previousClose }}<br/></li>
+            <li class="list-group-item">MarketCap: ${{ api.marketCap }}<br/></li>
+            <li class="list-group-item">YTD Change: {{ api.ytdChange }}%<br/></li>
+            <li class="list-group-item">52WK High: ${{ api.week52High }}<br/></li>
+            <li class="list-group-item">52WK Low: ${{ api.week52Low }}<br/></li>
+        </ul>
+    </div>
+
+    {% endif %}
+
+{% else %}
+    do something else
+
+{% endif %}
+
+{% endblock %}
